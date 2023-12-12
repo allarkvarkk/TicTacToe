@@ -1,13 +1,18 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 
 public class InputHandler implements InputProcessor {
     private float xPos, yPos;
     private int pressedX, pressedY;
+
     @Override
-    public boolean keyDown(int i) {
+    public boolean keyDown(int key) {
+        if (ScoreHandler.isGameOver() && key == Input.Keys.R) {
+            Board.initialize();
+        }
         return false;
     }
 
@@ -57,18 +62,19 @@ public class InputHandler implements InputProcessor {
         return false;
     }
 
-    public float getXPos(){
+    public float getXPos() {
         return xPos;
     }
-    public float getYPos(){
+
+    public float getYPos() {
         return yPos;
     }
 
-    public Vector2 getMousePos(){
+    public Vector2 getMousePos() {
         return new Vector2(xPos, yPos);
     }
 
-    public Vector2 getPressedPos(){
+    public Vector2 getPressedPos() {
         return new Vector2(pressedX, pressedY);
     }
 }
