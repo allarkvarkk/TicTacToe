@@ -5,10 +5,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Piece {
-    //  private int[] xPiece, oPiece;
-    private Engine eng;
     private static Color xColor, oColor;
     private static int xThickness;
+    private final int boxSize = Engine.GRID_OFFSET;
     private int offset;
     Vector2[] xPiece;
     int[] oPiece;
@@ -36,10 +35,10 @@ public class Piece {
     }
 
     public void createOPiece(Rectangle rect) {
-        int rectX = (int) rect.getX() + offset, rectY = (int) rect.getY() + offset;
-        oPiece[0] = (int) (rect.getX() + (rect.getWidth() / 2));
-        oPiece[1] = (int) (rect.getY() + (rect.getWidth() / 2));
-        oPiece[2] = (int) (rect.getWidth() / 2);
+        int rectX = (int) rect.getX(), rectY = (int) rect.getY();
+        oPiece[0] = (int) (rectX + (boxSize / 2));
+        oPiece[1] = (int) (rectY + (boxSize / 2));
+        oPiece[2] = (int) (boxSize / 2);
     }
 
     public int[] getOPiece() {

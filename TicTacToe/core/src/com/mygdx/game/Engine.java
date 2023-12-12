@@ -2,7 +2,6 @@ package com.mygdx.game;// Engine.java
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -10,25 +9,24 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import java.awt.*;
 
 public class Engine extends Game {
-    public ShapeRenderer sr;
-    public Board board;
-    public SpriteBatch b;
-    public BitmapFont f;
+    private ShapeRenderer shapeRenderer;
+    private SpriteBatch spriteBatch;
+    private BitmapFont bitmapFont;
     public static int WINDOW_HEIGHT, WINDOW_WIDTH;
-    public InputHandler inputHandler;
+    private InputHandler inputHandler;
     public static int GRID_OFFSET;
 
     @Override
     public void create() {
-        sr = new ShapeRenderer();
-        b = new SpriteBatch();
-        f = new BitmapFont();
+        shapeRenderer = new ShapeRenderer();
+        spriteBatch = new SpriteBatch();
+        bitmapFont = new BitmapFont();
         WINDOW_HEIGHT = Gdx.graphics.getHeight();
         WINDOW_WIDTH = Gdx.graphics.getWidth();
         GRID_OFFSET = WINDOW_HEIGHT / 6;
         inputHandler = new InputHandler();
         Gdx.input.setInputProcessor(inputHandler);
-        board = new Board(this);
+        Board board = new Board(this);
         setScreen(board);
     }
 
@@ -65,6 +63,17 @@ public class Engine extends Game {
     public static int getWindowHeight() {
         return WINDOW_HEIGHT;
     }
-
+    public ShapeRenderer getShapeRenderer(){
+        return shapeRenderer;
+    }
+    public BitmapFont getBitmapFont(){
+        return bitmapFont;
+    }
+    public SpriteBatch getSpriteBatch(){
+        return spriteBatch;
+    }
+    public InputHandler getInputHandler(){
+        return inputHandler;
+    }
 
 }

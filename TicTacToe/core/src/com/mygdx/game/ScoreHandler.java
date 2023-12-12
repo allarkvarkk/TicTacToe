@@ -13,6 +13,8 @@ public class ScoreHandler {
         grid = Board.getGrid();
         checkRow();
         checkColumn();
+        checkDiagonal();
+        System.out.println("xwin " + xWin + " ywin " + yWin);
         if (!xWin && !yWin) {
             checkTie();
         }

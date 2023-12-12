@@ -12,6 +12,7 @@ public class Tile {
     private static short turn;
     private char pieceType;
     private Piece piece;
+    private InputHandler inputHandler;
 
 
     public Tile(int xPos, int yPos, Engine eng) {
@@ -28,6 +29,7 @@ public class Tile {
 
 
     public void initialize() {
+        inputHandler = eng.getInputHandler();
         pieceType = 'e';
         turn = 1;
         piece = new Piece();
@@ -38,7 +40,7 @@ public class Tile {
     }
 
     public void placePiece() {
-        if (box.contains(eng.inputHandler.getPressedPos()) && pieceType == 'e' && !ScoreHandler.isGameOver()) {
+        if (box.contains(inputHandler.getPressedPos()) && pieceType == 'e' && !ScoreHandler.isGameOver()) {
             if (turn % 2 != 0) {
                 pieceType = 'X';
                 piece.createXPiece(box);
@@ -73,7 +75,7 @@ public class Tile {
     }
 
     public boolean isHovering() {
-        return box.contains(eng.inputHandler.getXPos(), eng.inputHandler.getYPos());
+        return box.contains(inputHandler.getMousePos());
     }
 
     public Rectangle getBox() {
